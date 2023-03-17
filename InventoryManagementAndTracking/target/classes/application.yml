@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    function:
+      definition: acmeManufacturingScInventoryLevelChangedV1ErpProductIdConsumer
+    stream:
+      bindings:
+        acmeManufacturingScInventoryLevelChangedV1ErpProductIdConsumer-in-0:
+          destination: acmeManufacturing/sc/inventory/level/changed/v1/erp/*
+      binders:
+        solace-binder:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: 'tcps://mr-connection-naepc0f7w1c.messaging.solace.cloud:55443'
+                msgVpn: acme-retail-demo
+                clientUsername: solace-cloud-client
+                clientPassword: 5mfi839enks59q3b10ceil2ncr
+logging:
+  level:
+    root: info
+    org:
+      springframework: info
+server:
+  port: 8080
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
